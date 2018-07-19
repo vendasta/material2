@@ -76,6 +76,7 @@ const markdownOptions = {
 task('docs', sequenceTask(
   [
     'markdown-docs-material',
+    'markdown-docs-vendasta',
     'markdown-docs-cdk',
     'build-highlighted-examples',
     'build-examples-module',
@@ -104,6 +105,32 @@ task('markdown-docs-material', () => {
 
   return src(['src/lib/**/!(README).md', 'guides/*.md'])
       .pipe(rename({prefix: 'material-'}))
+      .pipe(markdown(markdownOptions))
+      .pipe(transform(transformMarkdownFiles))
+      .pipe(dom(createTagNameAliaser('docs-markdown')))
+      .pipe(dest('dist/docs/markdown'));
+});
+
+/** Generates html files from the markdown overviews and guides for material. */
+task('markdown-docs-vendasta', () => {
+  // Extend the renderer for custom heading anchor rendering
+  markdown.marked.Renderer.prototype.heading = (text: string, level: number): string => {
+    if (level === 3 || level === 4) {
+      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+      return `
+        <h${level} id="${escapedText}" class="docs-header-link">
+          <span header-link="${escapedText}"></span>
+          ${text}
+        </h${level}>
+      `;
+    } else {
+      return `<h${level}>${text}</h${level}>`;
+    }
+  };
+
+  return src(['src/vendasta/**/!(README).md'])
+      .pipe(rename({prefix: 'vendasta-'}))
+      .pipe(rename((pt: any) => pt.dirname = `va-${pt.dirname}`))
       .pipe(markdown(markdownOptions))
       .pipe(transform(transformMarkdownFiles))
       .pipe(dom(createTagNameAliaser('docs-markdown')))
