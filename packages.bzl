@@ -69,7 +69,11 @@ MATERIAL_PACKAGES = [
   "tree",
 ]
 
-MATERIAL_TARGETS = ["//src/lib:material"] + ["//src/lib/%s" % p for p in MATERIAL_PACKAGES]
+VENDASTA_PACKAGES = [
+  "icon"
+]
+
+MATERIAL_TARGETS = ["//src/lib:material"] + ["//src/lib/%s" % p for p in MATERIAL_PACKAGES] + ["//src/vendasta/%s" % p for p in VENDASTA_PACKAGES]
 
 # Each individual package uses a placeholder for the version of Angular to ensure they're
 # all in-sync. This map is passed to each ng_package rule to stamp out the appropriate

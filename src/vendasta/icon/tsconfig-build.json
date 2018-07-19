@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig-build",
+  "files": [
+    "public-api.ts",
+    "../../lib/typings.d.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "@vendasta/material/icon",
+    "skipTemplateCodegen": true,
+    "fullTemplateTypeCheck": true
+  }
+}

@@ -30,6 +30,9 @@ const cdkPackages = globSync(path.join(sourceDir, 'cdk', '*/'))
 const materialPackages = globSync(path.join(sourceDir, 'lib', '*/'))
   .map(packagePath => path.basename(packagePath));
 
+const vendastaPackages = globSync(path.join(sourceDir, 'vendasta', '*/'))
+  .map(packagePath => path.basename(packagePath));
+
 /**
  * Dgeni package for the Angular Material docs. This just defines the package, but doesn't
  * generate the docs yet.
@@ -111,6 +114,10 @@ apiDocsPackage.config((readTypeScriptModules: ReadTypeScriptModules, tsParser: T
     typescriptPathMap[`@angular/material/${packageName}`] = [`./lib/${packageName}/index.ts`];
   });
 
+  vendastaPackages.forEach(packageName => {
+    typescriptPathMap[`@vendasta/material/${packageName}`] = [`./vendasta/${packageName}/index.ts`];
+  });
+
   // Add proper path mappings to the TSParser service of Dgeni. This ensures that properties
   // from mixins (e.g. color, disabled) are showing up properly in the docs.
   tsParser.options.paths = typescriptPathMap;
@@ -120,7 +127,8 @@ apiDocsPackage.config((readTypeScriptModules: ReadTypeScriptModules, tsParser: T
   // files will have docs generated.
   readTypeScriptModules.sourceFiles = [
     ...cdkPackages.map(packageName => `./cdk/${packageName}/index.ts`),
-    ...materialPackages.map(packageName => `./lib/${packageName}/index.ts`)
+    ...materialPackages.map(packageName => `./lib/${packageName}/index.ts`),
+    ...vendastaPackages.map(packageName => `./vendasta/${packageName}/index.ts`)
   ];
 });
 
