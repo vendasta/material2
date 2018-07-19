@@ -129,8 +129,7 @@ task('markdown-docs-vendasta', () => {
   };
 
   return src(['src/vendasta/**/!(README).md'])
-      .pipe(rename({prefix: 'vendasta-'}))
-      .pipe(rename((pt: any) => pt.dirname = `va-${pt.dirname}`))
+      .pipe(rename({prefix: 'vendasta-va-'}))
       .pipe(markdown(markdownOptions))
       .pipe(transform(transformMarkdownFiles))
       .pipe(dom(createTagNameAliaser('docs-markdown')))
