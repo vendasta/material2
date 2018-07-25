@@ -7,7 +7,7 @@ ng_module(
   name = "icon",
   srcs = glob(["**/*.ts"], exclude=["**/*.spec.ts"]),
   module_name = "@vendasta/material/va-icon",
-  assets = [":icon.css"] + glob(["**/*.html"]),
+  assets = [":icon.component.css"] + glob(["**/*.html"]),
   deps = [
     "//src/lib/core",
   ],
@@ -22,7 +22,7 @@ filegroup(
 
 sass_binary(
   name = "icon_scss",
-  src = "icon.scss",
+  src = "icon.component.scss",
   deps = ["//src/lib/core:core_scss_lib"],
 )
 
