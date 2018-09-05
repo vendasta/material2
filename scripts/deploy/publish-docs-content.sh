@@ -33,7 +33,7 @@ buildVersion=$(node -pe "require('./package.json').version")
 branchName=${TRAVIS_BRANCH:-'master'}
 
 # Additional information about the last commit for docs-content commits.
-commitSha=$(git rev-parse --short HEAD)
+commitSha=$(git rev-parse HEAD)
 commitAuthorName=$(git --no-pager show -s --format='%an' HEAD)
 commitAuthorEmail=$(git --no-pager show -s --format='%ae' HEAD)
 commitMessage=$(git log --oneline -n 1)
