@@ -1,0 +1,25 @@
+
+secrets:
+- kmsKeyName: projects/repcore-prod/locations/global/keyRings/hal9000-password/cryptoKeys/hal9000-password
+  secretEnv:
+    HAL_9000_PASSWORD: "CiQAfhHSez95YDVQIxin7WvFszF9MhkusXlJLnudB4yIxffh5q4SSgDQgp8fYmnvUWrDuH72G5rveO4dXKuHXYNViysWzk0C8Kf1yLgEna0uDv0ImH3KvgyxNl1lCbCamD2YciEhwK86PhTQkTr2Vjtp"
+
+steps:
+
+- name: 'gcr.io/repcore-prod/angular-cli:0.3.0'
+  args: ['npm', 'install']
+  id: 'npm-install'
+  waitFor: ['-']
+
+- name: 'gcr.io/repcore-prod/angular-cli:0.3.0'
+  args: ['npm', 'run', 'build-docs']
+  id: 'ng-build-prod'
+  waitFor: ['npm-install']
+  artifacts:
+    objects:
+      location: 'gs://vendasta-material-docs'
+      paths: ['/tmp/material-docs-*.tar.gz']
+
+timeout: 1200s
+options:
+  machineType: N1_HIGHCPU_8

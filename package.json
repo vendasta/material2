@@ -19,7 +19,7 @@
     "webdriver-manager": "webdriver-manager",
     "docs": "gulp docs",
     "api": "gulp api-docs",
-    "publish-docs": "gulp docs && gulp api-docs && cp -R ./dist/docs/api ~/Projects/material.angular.io/src/assets/documents/cp -R ./dist/docs/api ~/Projects/material.angular.io/src/assets/documents/"
+    "build-docs": "gulp docs && gulp api-docs && ./scripts/deploy/publish-docs-content.sh"
   },
   "version": "6.4.0",
   "license": "MIT",

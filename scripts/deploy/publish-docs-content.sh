@@ -8,12 +8,6 @@ set -e
 
 cd "$(dirname $0)/../../"
 
-if [ -z ${MATERIAL2_DOCS_CONTENT_TOKEN} ]; then
-  echo "Error: No access token for GitHub could be found." \
-       "Please set the environment variable 'MATERIAL2_DOCS_CONTENT_TOKEN'."
-  exit 1
-fi
-
 if [[ ! ${*} == *--no-build* ]]; then
   $(npm bin)/gulp material-examples:build-release:clean
   $(npm bin)/gulp docs
@@ -27,12 +21,10 @@ docsDistPath="${projectPath}/dist/docs"
 
 # Path to the cloned docs-content repository.
 docsContentPath="${projectPath}/tmp/material2-docs-content"
+mkdir -p ${projectPath}/tmp
 
 # Path to the release output of the @angular/material-examples package.
 examplesPackagePath="${projectPath}/dist/releases/material-examples"
-
-# Git clone URL for the material2-docs-content repository.
-docsContentRepoUrl="https://github.com/angular/material2-docs-content"
 
 # Current version of Angular Material from the package.json file
 buildVersion=$(node -pe "require('./package.json').version")
@@ -55,30 +47,12 @@ echo "Starting deployment of the docs-content for ${buildVersionName} in ${branc
 
 # Remove the docs-content repository if the directory exists
 rm -Rf ${docsContentPath}
-
-# Clone the docs-content repository.
-git clone ${docsContentRepoUrl} ${docsContentPath} --depth 1
-
-echo "Successfully cloned docs-content repository."
+mkdir ${docsContentPath}
 
 # Go into the repository directory.
 cd ${docsContentPath}
-
-echo "Switched into the repository directory."
-
-if [[ $(git ls-remote --heads origin ${branchName}) ]]; then
-  git checkout ${branchName}
-  echo "Switched to ${branchName} branch."
-else
-  echo "Branch ${branchName} does not exist on the docs-content repo yet. Creating ${branchName}.."
-  git checkout -b ${branchName}
-  echo "Branch created and checked out."
-fi
-
-# Remove everything inside of the docs-content repository.
-rm -Rf ${docsContentPath}/*
-
-echo "Removed everything from the docs-content repository. Copying all files into repository.."
+echo "Switched into the documentation directory."
+echo "Copying all files into repository.."
 
 # Create all folders that need to exist in the docs-content repository.
 mkdir ${docsContentPath}/{overview,guides,api,examples,stackblitz,examples-package}
@@ -106,23 +80,9 @@ done
 
 echo "Successfully copied all content into the docs-content repository."
 
-if [[ $(git ls-remote origin "refs/tags/${buildTagName}") ]]; then
-  echo "Skipping publish of docs-content because tag is already published. Exiting.."
-  exit 0
-fi
+fileName=material-docs-${commitSha}.tar.gz
 
-# Setup the Git configuration
-git config user.name "$commitAuthorName"
-git config user.email "$commitAuthorEmail"
-git config credential.helper "store --file=.git/credentials"
+cd ..
+tar -zcvf ${fileName} material2-docs-content
 
-echo "https://${MATERIAL2_DOCS_CONTENT_TOKEN}:@github.com" > .git/credentials
-
-echo "Credentials for docs-content repository are now set up. Publishing.."
-
-git add -A
-git commit --allow-empty -m "${buildCommitMessage}"
-git tag "${buildTagName}"
-git push origin master --tags
-
-echo "Published docs-content for ${buildVersionName} into ${branchName} successfully"
+echo "Created tar of docs: ${fileName}"
