@@ -15,10 +15,11 @@ steps:
   args: ['npm', 'run', 'build-docs']
   id: 'ng-build-prod'
   waitFor: ['npm-install']
-  artifacts:
-    objects:
-      location: 'gs://vendasta-material-docs'
-      paths: ['/tmp/material-docs-*.tar.gz']
+  
+artifacts:
+  objects:
+    location: 'gs://vendasta-material-docs'
+    paths: ['/tmp/material-docs-*.tar.gz']
 
 timeout: 1200s
 options:
