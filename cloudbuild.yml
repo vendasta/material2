@@ -1,20 +1,7 @@
-secrets:
-- kmsKeyName: projects/repcore-prod/locations/global/keyRings/hal9000-password/cryptoKeys/hal9000-password
-  secretEnv:
-    HAL_9000_PASSWORD: "CiQAfhHSez95YDVQIxin7WvFszF9MhkusXlJLnudB4yIxffh5q4SSgDQgp8fYmnvUWrDuH72G5rveO4dXKuHXYNViysWzk0C8Kf1yLgEna0uDv0ImH3KvgyxNl1lCbCamD2YciEhwK86PhTQkTr2Vjtp"
-
 steps:
-# Build the alpine and wheezy versions.
-- name: 'gcr.io/repcore-prod/fecli:0.17.0'
-  entrypoint: 'bash'
-  args: ['-c', 'fecli login -e hal9000@vendasta.com -p $$HAL_9000_PASSWORD']
-  secretEnv: ['HAL_9000_PASSWORD']
-  id: 'fecli-login'
-  volumes:
-  - name: 'iam-creds'
-    path: '/root/.config/vstatic/'
 
 - name: 'gcr.io/repcore-prod/angular-cli:0.3.0'
+  entrypoint: 'bash'
   args: ['npm', 'install']
   id: 'npm-install'
   waitFor: ['-']
