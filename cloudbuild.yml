@@ -5,9 +5,9 @@ steps:
   id: 'npm-install'
   waitFor: ['-']
 
-- name: 'gcr.io/repcore-prod/angular-cli:0.3.0'
+- name: 'gcr.io/cloud-builders/npm:node-8.11.0'
   args: ['npm', 'run', 'build-docs']
-  id: 'ng-build-prod'
+  id: 'ng-build-docs'
   waitFor: ['npm-install']
 
 artifacts:
