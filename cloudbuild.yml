@@ -6,7 +6,7 @@ steps:
   waitFor: ['-']
 
 - name: 'gcr.io/cloud-builders/npm:node-8.11.0'
-  args: ['npm', 'run', 'build-docs']
+  args: ['run', 'build-docs']
   id: 'ng-build-docs'
   waitFor: ['npm-install']
 
