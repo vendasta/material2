@@ -1,6 +1,6 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/cloud-builders/npm:node-8.11.0'
   args: ['install']
   id: 'npm-install'
   waitFor: ['-']
