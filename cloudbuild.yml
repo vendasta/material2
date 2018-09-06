@@ -1,7 +1,6 @@
 steps:
 
-- name: 'gcr.io/repcore-prod/angular-cli:0.3.0'
-  entrypoint: 'npm'
+- name: 'gcr.io/cloud-builders/npm'
   args: ['install']
   id: 'npm-install'
   waitFor: ['-']
