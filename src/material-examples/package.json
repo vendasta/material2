@@ -30,6 +30,7 @@
     "@angular/material-moment-adapter": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
-    "tslib": "^1.7.1"
+    "tslib": "^1.7.1",
+    "@vendasta/uikit": "^7.7.0"
   }
 }

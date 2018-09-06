@@ -95,6 +95,7 @@ function generateExampleNgModule(extractedMetadata: ExampleMetadata[]): string {
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {UIKitModule} from '@vendasta/uikit';
 import {ExampleMaterialModule} from './material-module';
 ${extractedMetadata.map(r => buildImportsTemplate(r)).join('').trim()}
 
@@ -120,7 +121,8 @@ export const EXAMPLE_LIST = [
     ExampleMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    UIKitModule
   ]
 })
 export class ExampleModule { }
