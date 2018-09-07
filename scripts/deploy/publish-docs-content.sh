@@ -78,7 +78,7 @@ for overviewPath in $(find ${docsDistPath}/markdown/ -mindepth 2 -type f); do
   cp ${overviewPath} ${docsContentPath}/overview
 done
 
-echo "Successfully copied all content into the docs-content repository."
+echo "Successfully copied all content into the docs-content folder."
 
 fileName=material-docs-${commitSha}.tar.gz
 
