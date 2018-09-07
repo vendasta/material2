@@ -13,7 +13,7 @@ steps:
 artifacts:
   objects:
     location: 'gs://vendasta-material-docs'
-    paths: ['material-docs-*.tar.gz']
+    paths: ['tmp/material-docs-*.tar.gz']
 
 timeout: 1200s
 options:
