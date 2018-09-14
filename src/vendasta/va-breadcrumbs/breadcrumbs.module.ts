@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 
-import {VaBreadcrumbsComponent} from './va-breadcrumbs.component';
+import {VaBreadcrumbsComponent} from './breadcrumbs.component';
 
 @NgModule({
     declarations: [VaBreadcrumbsComponent],

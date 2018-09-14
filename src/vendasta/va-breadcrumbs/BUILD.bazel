@@ -7,7 +7,7 @@ ng_module(
   name = "breadcrumbs",
   srcs = glob(["**/*.ts"], exclude=["**/*.spec.ts"]),
   module_name = "@vendasta/material/va-breadcrumbs",
-  assets = [":va-breadcrumbs.component.css"] + glob(["**/*.html"]),
+  assets = [":breadcrumbs.component.css"] + glob(["**/*.html"]),
   deps = [
     "//src/lib/core",
   ],
@@ -22,7 +22,7 @@ filegroup(
 
 sass_binary(
   name = "va_breadcrumbs_scss",
-  src = "va-breadcrumbs.component.scss",
+  src = "breadcrumbs.component.scss",
   deps = ["//src/lib/core:core_scss_lib"],
 )
 

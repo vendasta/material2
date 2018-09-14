@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {Breadcrumbs} from './va-breadcrumbs';
+import {Breadcrumbs} from './breadcrumbs';
 
 @Component({
     selector: 'va-breadcrumbs',
-    styleUrls: ['./va-breadcrumbs.component.scss'],
+    styleUrls: ['./breadcrumbs.component.scss'],
     template: `
     <ul>
         <li [ngClass]="{'parent': breadcrumb.url}" *ngFor="let breadcrumb of breadcrumbs">
