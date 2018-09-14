@@ -4,7 +4,7 @@ load("@io_bazel_rules_sass//sass:sass.bzl", "sass_library", "sass_binary")
 
 
 ng_module(
-  name = "va-breadcrumbs",
+  name = "breadcrumbs",
   srcs = glob(["**/*.ts"], exclude=["**/*.spec.ts"]),
   module_name = "@vendasta/material/va-breadcrumbs",
   assets = [":va-breadcrumbs.component.css"] + glob(["**/*.html"]),
