@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Breadcrumbs} from '../../vendasta/va-breadcrumbs';
 
 /**
  * @title Basic icons
@@ -10,7 +9,7 @@ import {Breadcrumbs} from '../../vendasta/va-breadcrumbs';
   styleUrls: ['va-breadcrumbs-overview-example.css'],
 })
 export class VaBreadcrumbsOverviewExample {
-  breadcrumbs: Breadcrumbs[] = [
+  breadcrumbs = [
     {url: '/', text: 'Vendasta Material'},
     {text: 'Vendasta Breadcrumbs Component Docs'}
   ];
