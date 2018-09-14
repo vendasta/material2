@@ -70,7 +70,8 @@ MATERIAL_PACKAGES = [
 ]
 
 VENDASTA_PACKAGES = [
-  "icon"
+  "icon",
+  "va-breadcrumbs"
 ]
 
 MATERIAL_TARGETS = ["//src/lib:material"] + ["//src/lib/%s" % p for p in MATERIAL_PACKAGES] + ["//src/vendasta/%s" % p for p in VENDASTA_PACKAGES]
