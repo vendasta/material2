@@ -11,3 +11,6 @@ export * from './toolbar-multirow/toolbar-multirow-example';
 export * from './button-toggle-overview/button-toggle-overview-example';
 export * from './expansion-overview/expansion-overview-example';
 export * from './stepper-overview/stepper-overview-example';
+
+export * from './va-icon-overview/va-icon-overview-example';
+export * from './va-breadcrumbs-overview/va-breadcrumbs-overview-example';
