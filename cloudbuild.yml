@@ -27,7 +27,7 @@ steps:
   waitFor: ['npm-install']
 
 - name: 'gcr.io/repcore-prod/angular-cli:0.3.0'
-  args: ['node', './build-tools/vpublish.js']
+  args: ['node', './vpublish.js']
   id: 'ng-publish'
   waitFor: ['ng-build', 'ng-build-docs', 'ng-publish-token']
 
