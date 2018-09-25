@@ -36,7 +36,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "@angular/material",
+    "flatModuleId": "@vendasta/material",
     "skipTemplateCodegen": true,
     "fullTemplateTypeCheck": true
   },

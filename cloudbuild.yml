@@ -1,14 +1,35 @@
-steps:
+secrets:
+- kmsKeyName: projects/repcore-prod/locations/global/keyRings/container-builder/cryptoKeys/npm
+  secretEnv:
+    NPM_AUTH_TOKEN: "CiQAXEkCrvYPEATDxouDnhfM0g0ePydJxkZruDxXg4b8arro7xISTQBxQpVqhA50sz2OSALrMqV6lNO91rP+ZNnHyJLHyVGxLmKzRGNFoSbrQxuWCyt73gfTmsJ7voPew29H+hU4OpzDA/j2YMeBz28OVdzv"
 
+steps:
 - name: 'gcr.io/cloud-builders/npm:node-8.11.0'
   args: ['install']
   id: 'npm-install'
   waitFor: ['-']
 
 - name: 'gcr.io/cloud-builders/npm:node-8.11.0'
+  entrypoint: 'bash'
+  args: ['-c', 'echo "https://registry.npmjs.org/:_authToken=$$NPM_AUTH_TOKEN" > ./.npmrc' ]
+  secretEnv: ['NPM_AUTH_TOKEN']
+  id: 'ng-publish-token',
+  waitFor: ['npm-install']
+
+- name: 'gcr.io/cloud-builders/npm:node-8.11.0'
+  args: ['run', 'build']
+  id: 'ng-build'
+  waitFor: ['npm-install']
+
+- name: 'gcr.io/cloud-builders/npm:node-8.11.0'
   args: ['run', 'build-docs']
   id: 'ng-build-docs'
   waitFor: ['npm-install']
+
+- name: 'gcr.io/repcore-prod/angular-cli:0.3.0'
+  args: ['node', './build-tools/vpublish.js']
+  id: 'ng-publish'
+  waitFor: ['ng-build', 'ng-build-docs', 'ng-publish-token']
 
 artifacts:
   objects:
