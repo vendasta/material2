@@ -33,7 +33,7 @@ function publishToNpm() {
 }
 
 git().branchLocal((_, branch) => {
-  if (true || branch.current === 'master') {
+  if (branch.current === 'master') {
     publishToNpm();
   } else {
     shell.echo(`Not publishing to npm, branch ${branch.current} is not master`);

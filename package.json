@@ -21,7 +21,7 @@
     "api": "gulp api-docs",
     "build-docs": "gulp docs && gulp api-docs && ./scripts/deploy/publish-docs-content.sh"
   },
-  "version": "6.4.0",
+  "version": "6.4.1",
   "license": "MIT",
   "engines": {
     "node": ">= 5.4.1"
