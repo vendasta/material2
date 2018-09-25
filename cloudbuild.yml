@@ -11,7 +11,7 @@ steps:
 
 - name: 'gcr.io/cloud-builders/npm:node-8.11.0'
   entrypoint: 'bash'
-  args: ['-c', 'echo "https://registry.npmjs.org/:_authToken=$$NPM_AUTH_TOKEN" > ./.npmrc' ]
+  args: ['-c', 'echo "//registry.npmjs.org/:_authToken=$$NPM_AUTH_TOKEN" > ./.npmrc' ]
   secretEnv: ['NPM_AUTH_TOKEN']
   id: 'ng-publish-token'
   waitFor: ['npm-install']
