@@ -1,11 +1,11 @@
 {
   "name": "material2-srcs",
   "description": "Material Design components for Angular",
-  "homepage": "https://github.com/angular/material2",
-  "bugs": "https://github.com/angular/material2/issues",
+  "homepage": "https://github.com/vendasta/material2",
+  "bugs": "https://github.com/vendasta/material2/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular/material2.git"
+    "url": "https://github.com/vendasta/material2.git"
   },
   "scripts": {
     "postinstall": "ngc -p angular.tsconfig.json",
@@ -21,7 +21,7 @@
     "api": "gulp api-docs",
     "build-docs": "gulp docs && gulp api-docs && ./scripts/deploy/publish-docs-content.sh"
   },
-  "version": "6.4.0",
+  "version": "6.4.1",
   "license": "MIT",
   "engines": {
     "node": ">= 5.4.1"
@@ -34,6 +34,7 @@
     "@angular/elements": "6.0.0",
     "@angular/forms": "6.0.0",
     "@angular/platform-browser": "6.0.0",
+    "@angular/cdk": "6.4.0",
     "@webcomponents/custom-elements": "^1.1.0",
     "@vendasta/uikit": "^7.8.0",
     "core-js": "^2.4.1",
@@ -133,6 +134,9 @@
     "tslint": "^5.9.1",
     "tsutils": "^2.6.0",
     "typescript": "2.7.x",
-    "uglify-js": "^2.8.14"
+    "uglify-js": "^2.8.14",
+    "semver-compare": "^1.0.0",
+    "shelljs": "^0.7.8",
+    "simple-git": "^1.102.0"
   }
 }

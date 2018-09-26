@@ -9,11 +9,11 @@ load("//:packages.bzl", "MATERIAL_PACKAGES", "MATERIAL_TARGETS", "ROLLUP_GLOBALS
 # Export the root material tsconfig so that subpackages can reference it directly.
 exports_files(["tsconfig-build.json"])
 
-# Root "@angular/material" entry-point.
+# Root "@vendasta/material" entry-point.
 ng_module(
   name = "material",
   srcs = glob(["*.ts"], exclude=["**/*.spec.ts"]),
-  module_name = "@angular/material",
+  module_name = "@vendasta/material",
   deps = ["//src/lib/%s" % p for p in MATERIAL_PACKAGES],
   tsconfig = "//src/lib:tsconfig-build.json",
 )
